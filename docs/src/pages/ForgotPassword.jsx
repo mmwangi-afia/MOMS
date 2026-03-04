@@ -18,7 +18,7 @@ const ForgotPassword = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/auth/forgot-password", { email });
+      const res = await axios.post(`${API_BASE_URL}/auth/forgot-password`, { email });
       setMessage(res.data.message);
       setStep(2);
     } catch (err) {
@@ -38,7 +38,7 @@ const ForgotPassword = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/auth/reset-password", { token, password: newPassword });
+      const res = await axios.post(`${API_BASE_URL}/auth/reset-password`, { token, password: newPassword });
       setMessage(res.data.message);
       setStep(3);
     } catch (err) {

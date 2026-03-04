@@ -77,7 +77,7 @@ function AddStockModal({ open, onOpenChange, onAddItems }) {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/stock",
+        `${API_BASE_URL}/stock`,
         payload,
         {
           headers: {
@@ -206,7 +206,7 @@ const StockManagement = () => {
     const fetchStock = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/stock", {
+        const res = await axios.get(`${API_BASE_URL}/stock`, {
           headers: {
             ...(token && { Authorization: `Bearer ${token}` })
           }

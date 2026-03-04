@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "" });
@@ -16,16 +17,13 @@ const Signup = () => {
       setError("All fields are required.");
       return;
     }
-    if (!/\S+@\S+\.\S+/.test(form.email)) {
-      setError("Invalid email address.");
-      return;
-    }
-    if (form.password.length < 6) {
-      setError("Password must be at least 6 characters.");
-      return;
-    }
     try {
-      await axios.post("http://localhost:5000/auth/signup", form);
+      await axios.post(`${API_BASE_URL}/auth/signup`, { 
+        name: form.name, 
+        email: form.email, 
+        password: form.password, 
+        role: form.role 
+      });
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed.");

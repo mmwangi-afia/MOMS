@@ -53,7 +53,7 @@ export function AppSidebar() {
     const token = localStorage.getItem("token")
     if (token) {
       try {
-        await fetch("http://localhost:5000/auth/logout", {
+        await fetch(`${API_BASE_URL}/auth/logout`, {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${token}`,
